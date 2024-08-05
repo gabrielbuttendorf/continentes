@@ -1,0 +1,16 @@
+main span {
+  display: block;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.opcoes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  justify-items: center;
+}
+
+.opcoes button {
+  width: 40%;
+}
