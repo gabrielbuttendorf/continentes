@@ -131,7 +131,7 @@ const paisContinente = [
   ['Noruega', 'europa'],
   ['Nova Zelândia', 'oceania'],
   ['Omã', 'asia'],
-  ['Países Baixos', 'europa'],
+  ['Holanda', 'europa'],
   ['Palau', 'oceania'],
   ['Panamá', 'america'],
   ['Papua Nova Guiné', 'oceania'],
@@ -146,13 +146,13 @@ const paisContinente = [
   ['República Centro-Africana', 'africa'],
   ['República Democrática do Congo', 'africa'],
   ['República Dominicana', 'america'],
-  ['República do Congo', 'africa'],
+  ['Congo', 'africa'],
   ['República Tcheca', 'europa'],
   ['Romênia', 'europa'],
   ['Ruanda', 'africa'],
   ['Rússia', 'europa'],
   ['Saara Ocidental', 'africa'],
-  ['Saint Kitts e Nevis', 'america'],
+  ['São Cristóvão e Nevis', 'america'],
   ['Saint Vincent e Granadinas', 'america'],
   ['Santa Lúcia', 'america'],
   ['São Marino', 'europa'],
@@ -195,6 +195,19 @@ const paisContinente = [
   ['Zimbábue', 'africa'],
 ]
 
+const continenteFormatado = {
+  'america': 'América',
+  'asia': 'Ásia',
+  'africa': 'África',
+  'europa': 'Europa',
+  'oceania': 'Oceania'
+}
+
+const pais = document.getElementById('pais')
+const proximo = document.getElementById('proximo')
+const feedback = document.getElementById('feedback')
+const respostaCorreta = document.getElementById('resposta-correta')
+
 // Sortear número
 function sortearNumero() {
   return Math.floor(Math.random() * 194)
@@ -203,25 +216,38 @@ function sortearNumero() {
 let numeroSorteado = sortearNumero()
 
 // Inserir o nome do país sorteado no SPAN
-const pais = document.getElementById('pais')
 pais.textContent = `${paisContinente[numeroSorteado][0]}`
 
 // Verificar o botão clicado
-const buttons = document.querySelectorAll('.opcoes button')
+const buttons = document.querySelectorAll('#opcoes button')
 
 buttons.forEach((button) => {
   button.addEventListener('click', (event) => {
     const value = event.target.value
 
+    buttons.forEach(button => button.classList.add('disabled'))
+
     // Exibir erro ou acerto
     if (value === paisContinente[numeroSorteado][1]) {
-      alert(`Você acertou!: ${value}`)
+      feedback.style.color = '#3ed953'
+      feedback.textContent = 'CORRETO!'
+      respostaCorreta.textContent = ''
     } else {
-      alert(`Você errou!: ${paisContinente[numeroSorteado][1]}`)
+      feedback.style.color = '#d93e3e'
+      feedback.textContent = 'ERROU!'
+      respostaCorreta.textContent = `Correto seria: ${continenteFormatado[paisContinente[numeroSorteado][1]]}`
     }
 
-    // Sortear e exibir um novo país
-    numeroSorteado = sortearNumero()
-    pais.textContent = `${paisContinente[numeroSorteado][0]}`
+    proximo.classList.remove('disabled')
   })
+})
+
+// Sortear e exibir um novo país
+proximo.addEventListener('click', () => {
+  numeroSorteado = sortearNumero()
+  proximo.classList.add('disabled')
+  pais.textContent = `${paisContinente[numeroSorteado][0]}`
+  feedback.textContent = ''
+  respostaCorreta.textContent = ''
+  buttons.forEach(button => button.classList.remove('disabled'))
 })
