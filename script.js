@@ -207,10 +207,22 @@ const pais = document.getElementById('pais')
 const proximo = document.getElementById('proximo')
 const feedback = document.getElementById('feedback')
 const respostaCorreta = document.getElementById('resposta-correta')
+let numerosSorteados = []
 
 // Sortear número
 function sortearNumero() {
-  return Math.floor(Math.random() * 194)
+  if (numerosSorteados.length === paisContinente.length) {
+    alert('Todos os países foram exibidos, reiniciando...')
+    numerosSorteados = []
+  }
+
+  let numero
+  do {
+    numero = Math.floor(Math.random() * paisContinente.length)
+  } while (numerosSorteados.includes(numero));
+
+  numerosSorteados.push(numero)
+  return numero
 }
 
 let numeroSorteado = sortearNumero()
