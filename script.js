@@ -1,17 +1,17 @@
-const paisContinente = [
-  // ['Brasil', 'america'],
+let paisContinente = [
+  ['Brasil', 'america'],
   ['Afeganistão', 'asia'],
   ['África do Sul', 'africa'],
   ['Albânia', 'europa'],
-  // ['Alemanha', 'europa'],
+  ['Alemanha', 'europa'],
   ['Andorra', 'europa'],
   ['Angola', 'africa'],
   ['Antígua e Barbuda', 'america'],
   ['Arábia Saudita', 'asia'],
   ['Argélia', 'africa'],
-  // ['Argentina', 'america'],
+  ['Argentina', 'america'],
   ['Armênia', 'asia'],
-  // ['Austrália', 'oceania'],
+  ['Austrália', 'oceania'],
   ['Áustria', 'europa'],
   ['Azerbaijão', 'asia'],
   ['Bahamas', 'america'],
@@ -37,13 +37,13 @@ const paisContinente = [
   ['Catar', 'asia'],
   ['Cazaquistão', 'asia'],
   ['Chade', 'africa'],
-  // ['Chile', 'america'],
-  // ['China', 'asia'],
+  ['Chile', 'america'],
+  ['China', 'asia'],
   ['Chipre', 'europa'],
   ['Colômbia', 'america'],
   ['Comores', 'africa'],
-  // ['Coreia do Norte', 'asia'],
-  // ['Coreia do Sul', 'asia'],
+  ['Coreia do Norte', 'asia'],
+  ['Coreia do Sul', 'asia'],
   ['Costa do Marfim', 'africa'],
   ['Costa Rica', 'america'],
   ['Croácia', 'europa'],
@@ -59,13 +59,13 @@ const paisContinente = [
   ['Eslováquia', 'europa'],
   ['Eslovênia', 'europa'],
   ['Espanha', 'europa'],
-  // ['Estados Unidos', 'america'],
+  ['Estados Unidos', 'america'],
   ['Estônia', 'europa'],
   ['Etiópia', 'africa'],
   ['Fiji', 'oceania'],
   ['Filipinas', 'asia'],
   ['Finlândia', 'europa'],
-  // ['França', 'europa'],
+  ['França', 'europa'],
   ['Gabão', 'africa'],
   ['Gâmbia', 'africa'],
   ['Gana', 'africa'],
@@ -89,9 +89,9 @@ const paisContinente = [
   ['Irlanda', 'europa'],
   ['Islândia', 'europa'],
   ['Israel', 'asia'],
-  // ['Itália', 'europa'],
+  ['Itália', 'europa'],
   ['Jamaica', 'america'],
-  // ['Japão', 'asia'],
+  ['Japão', 'asia'],
   ['Jordânia', 'asia'],
   ['Kiribati', 'oceania'],
   ['Kosovo', 'europa'],
@@ -114,7 +114,7 @@ const paisContinente = [
   ['Marrocos', 'africa'],
   ['Maurícia', 'africa'],
   ['Mauritânia', 'africa'],
-  // ['México', 'america'],
+  ['México', 'america'],
   ['Mianmar', 'asia'],
   ['Micronésia', 'oceania'],
   ['Moçambique', 'africa'],
@@ -129,20 +129,20 @@ const paisContinente = [
   ['Níger', 'africa'],
   ['Nigéria', 'africa'],
   ['Noruega', 'europa'],
-  // ['Nova Zelândia', 'oceania'],
+  ['Nova Zelândia', 'oceania'],
   ['Omã', 'asia'],
   ['Holanda', 'europa'],
   ['Palau', 'oceania'],
   ['Panamá', 'america'],
   ['Papua Nova Guiné', 'oceania'],
   ['Paquistão', 'asia'],
-  // ['Paraguai', 'america'],
+  ['Paraguai', 'america'],
   ['Peru', 'america'],
   ['Polônia', 'europa'],
-  // ['Portugal', 'europa'],
+  ['Portugal', 'europa'],
   ['Quênia', 'africa'],
   ['Quirguistão', 'asia'],
-  // ['Inglaterra', 'europa'],
+  ['Inglaterra', 'europa'],
   ['República Centro-Africana', 'africa'],
   ['República Democrática do Congo', 'africa'],
   ['República Dominicana', 'america'],
@@ -150,7 +150,7 @@ const paisContinente = [
   ['República Tcheca', 'europa'],
   ['Romênia', 'europa'],
   ['Ruanda', 'africa'],
-  // ['Rússia', 'europa'],
+  ['Rússia', 'europa'],
   ['Saara Ocidental', 'africa'],
   ['São Cristóvão e Nevis', 'america'],
   ['São Vicente e Granadinas', 'america'],
@@ -175,7 +175,7 @@ const paisContinente = [
   ['Taiwan', 'asia'],
   ['Tajiquistão', 'asia'],
   ['Tanzânia', 'africa'],
-  ['Timor-Leste', 'asia'],
+  ['Timor-Leste', 'oceania'],
   ['Togo', 'africa'],
   ['Tonga', 'oceania'],
   ['Trinidad e Tobago', 'america'],
@@ -185,7 +185,7 @@ const paisContinente = [
   ['Tuvalu', 'oceania'],
   ['Ucrânia', 'europa'],
   ['Uganda', 'africa'],
-  // ['Uruguai', 'america'],
+  ['Uruguai', 'america'],
   ['Uzbequistão', 'asia'],
   ['Vanuatu', 'oceania'],
   ['Vaticano', 'europa'],
@@ -208,15 +208,31 @@ const proximo = document.getElementById('proximo')
 const feedback = document.getElementById('feedback')
 const respostaCorreta = document.getElementById('resposta-correta')
 let numerosSorteados = []
+let paisesIncorretos = []
 
 // Sortear número
 function sortearNumero() {
   if (numerosSorteados.length === paisContinente.length) {
-    alert('Todos os países foram exibidos, reiniciando...')
-    numerosSorteados = []
+    if (paisesIncorretos.length > 0) {
+      let confirmar = confirm('Todos os países foram exibidos, deseja jogar com os países que você errou?')
+
+      if (confirmar) {
+        paisContinente = paisesIncorretos
+      } else {
+        window.location.reload()
+      }
+
+      paisesIncorretos = []
+      numerosSorteados = []
+    } else {
+      alert('Acertou todos os países! Parabéns!')
+      window.location.reload()
+      return
+    }
   }
 
   let numero
+  
   do {
     numero = Math.floor(Math.random() * paisContinente.length)
   } while (numerosSorteados.includes(numero));
@@ -248,6 +264,7 @@ buttons.forEach((button) => {
       feedback.style.color = '#d93e3e'
       feedback.textContent = 'ERROU!'
       respostaCorreta.textContent = `Correto seria: ${continenteFormatado[paisContinente[numeroSorteado][1]]}`
+      paisesIncorretos.push(paisContinente[numeroSorteado])
     }
 
     proximo.classList.remove('disabled')
