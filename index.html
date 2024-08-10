@@ -5,23 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Qual é o Continente?</title>
   <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="./styles/tela-inicial.css">
+  <link rel="stylesheet" href="./styles/tela-jogo.css">
 </head>
 <body>
-  <div id="tela-inicial">
-    <h1>Escolha o Nível de Dificuldade</h1>
+  <div id="tela-inicial" class="tela-inicial">
+    <span class="titulo">Selecione a Dificuldade</span>
     <button onclick="iniciarJogo('facil')">Fácil</button>
     <button onclick="iniciarJogo('medio')">Médio</button>
     <button onclick="iniciarJogo('dificil')">Difícil</button>
   </div>
 
-  <main id="tela-jogo" class="hidden">
-    <span id="pais"></span>
+  <main id="tela-jogo" class="tela-jogo hidden">
+    <span class="titulo" id="pais"></span>
     <div class="feedback-container">
       <span id="feedback"></span>
       <span id="resposta-correta"></span>
     </div>
 
-    <div id="opcoes">
+    <div id="opcoes" class="opcoes">
       <button value="america">América</button>
       <button value="europa">Europa</button>
       <button value="africa">África</button>
@@ -29,7 +31,7 @@
       <button value="oceania">Oceania</button>
     </div>
 
-    <button id="proximo" class="disabled">Próximo</button>
+    <button id="proximo" class="proximo disabled">Próximo</button>
   </main>
   <script src="niveis.js"></script>
   <script src="script.js"></script>

@@ -5,7 +5,7 @@
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 body {
@@ -13,30 +13,12 @@ body {
   background: #343741;
 }
 
-main {
-  display: grid;
-  padding: 60px 20px;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-main span {
+span {
   display: block;
   text-align: center;
   font-size: 1.5rem;
   color: #ffffff;
   font-weight: 600;
-}
-
-.feedback-container {
-  padding: 40px 0;
-  height: 120px;
-}
-
-#opcoes {
-  display: grid;
-  gap: 20px;
-  justify-items: center;
 }
 
 button {
@@ -57,7 +39,7 @@ button:hover {
   border: 1px solid #646874;
 }
 
-button#proximo {
+button.proximo {
   margin-top: 32px;
   width: 60%;
 }
@@ -71,14 +53,7 @@ button.disabled {
   button {
     width: 60%;
   }
-  
-  button#proximo {
+  button.proximo {
     width: 75%;
-  }
-}
-
-@media (max-width: 300px) {
-  main span {
-    font-size: 1.2rem;
   }
 }

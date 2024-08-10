@@ -1,0 +1,28 @@
+.tela-jogo {
+  display: grid;
+  padding: 80px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.feedback-container {
+  padding: 40px 0;
+  height: 120px;
+}
+
+.feedback-container span {
+  font-size: 1.25rem;
+}
+
+.opcoes {
+  display: grid;
+  gap: 20px;
+  justify-items: center;
+}
+
+
+@media (max-width: 300px) {
+  .tela-jogo span {
+    font-size: 1.2rem;
+  }
+}

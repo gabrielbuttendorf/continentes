@@ -1,0 +1,29 @@
+.tela-inicial {
+  display: grid;
+  justify-items: center;
+  padding: 80px 20px;
+  gap: 16px;
+}
+
+.tela-inicial span {
+  margin-bottom: 20px;
+}
+
+.tela-inicial button:nth-of-type(1) {
+  color: #3ed953;
+  border-color: #8eff9d;
+}
+.tela-inicial button:nth-of-type(2) {
+  color: #d9d63e;
+  border-color: #f4ff8e;
+}
+.tela-inicial button:nth-of-type(3) {
+  color: #d96a3e;
+  border-color: #ffc18e;
+}
+
+@media (max-width: 400px) {
+  .tela-inicial span {
+    font-size: 1.25rem;
+  }
+}
