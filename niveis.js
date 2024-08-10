@@ -1,4 +1,4 @@
-let paisContinente = [
+let paisContinenteGeral = [
   ['Brasil', 'america'],
   ['Afeganistão', 'asia'],
   ['África do Sul', 'africa'],
@@ -195,8 +195,20 @@ let paisContinente = [
   ['Zimbábue', 'africa'],
 ]
 
-let paisContinenteFacil = []
+let paisContinenteFacil = [
+  ['Brasil', 'america'],
+  ['Alemanha', 'europa'],
+  ['África do Sul', 'africa'],
+]
 
-let paisContinenteMedio = []
+let paisContinenteMedio = [
+  ['Austrália', 'oceania'],
+  ['Áustria', 'europa'],
+  ['Azerbaijão', 'asia'],
+]
 
-let paisContinenteDificil = []
+let paisContinenteDificil = [
+  ['Benin', 'africa'],
+  ['Butão', 'asia'],
+  ['Bósnia e Herzegovina', 'europa'],
+]

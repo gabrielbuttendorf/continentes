@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+.hidden {
+  display: none;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   background: #343741;

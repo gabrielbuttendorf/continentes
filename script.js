@@ -10,43 +10,25 @@ const pais = document.getElementById('pais')
 const proximo = document.getElementById('proximo')
 const feedback = document.getElementById('feedback')
 const respostaCorreta = document.getElementById('resposta-correta')
+let paisContinente = [['null', 'null']]
 let numerosSorteados = []
 let paisesIncorretos = []
 
-// Sortear número
-function sortearNumero() {
-  if (numerosSorteados.length === paisContinente.length) {
-    if (paisesIncorretos.length > 0) {
-      let confirmar = confirm('Todos os países foram exibidos, deseja jogar com os países que você errou?')
-
-      if (confirmar) {
-        paisContinente = paisesIncorretos
-      } else {
-        window.location.reload()
-      }
-
-      paisesIncorretos = []
-      numerosSorteados = []
-    } else {
-      alert('Acertou todos os países! Parabéns!')
-      window.location.reload()
-      return
-    }
+// Iniciar jogo e escolher nível de dificuldade
+function iniciarJogo(dificuldade) {
+  document.getElementById('tela-inicial').classList.add('hidden')
+  document.getElementById('tela-jogo').classList.remove('hidden')
+  if (dificuldade === 'facil') {
+    paisContinente = paisContinenteFacil
+  } else if (dificuldade === 'medio') {
+    paisContinente = paisContinenteMedio
+  } else if (dificuldade === 'dificil') {
+    paisContinente = paisContinenteDificil
   }
 
-  let numero
+  let numeroSorteado = sortearNumero()
 
-  do {
-    numero = Math.floor(Math.random() * paisContinente.length)
-  } while (numerosSorteados.includes(numero));
-
-  numerosSorteados.push(numero)
-  return numero
-}
-
-let numeroSorteado = sortearNumero()
-
-// Inserir o nome do país sorteado no SPAN
+  // Inserir o nome do país sorteado no SPAN
 pais.textContent = `${paisContinente[numeroSorteado][0]}`
 
 // Verificar o botão clicado
@@ -83,3 +65,35 @@ proximo.addEventListener('click', () => {
   respostaCorreta.textContent = ''
   buttons.forEach(button => button.classList.remove('disabled'))
 })
+}
+
+// Sortear número
+function sortearNumero() {
+  if (numerosSorteados.length === paisContinente.length) {
+    if (paisesIncorretos.length > 0) {
+      let confirmar = confirm('Todos os países foram exibidos, deseja jogar com os países que você errou?')
+
+      if (confirmar) {
+        paisContinente = paisesIncorretos
+      } else {
+        window.location.reload()
+      }
+
+      paisesIncorretos = []
+      numerosSorteados = []
+    } else {
+      alert('Acertou todos os países! Parabéns!')
+      window.location.reload()
+      return
+    }
+  }
+
+  let numero
+
+  do {
+    numero = Math.floor(Math.random() * paisContinente.length)
+  } while (numerosSorteados.includes(numero));
+
+  numerosSorteados.push(numero)
+  return numero
+}
