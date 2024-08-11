@@ -33,23 +33,32 @@ button {
   cursor: pointer;
   transition: all 0.2s ease;
 }
-
 button:hover {
   background-color: #444752;
   border: 1px solid #646874;
 }
-
 button.proximo {
   margin-top: 32px;
   width: 60%;
 }
-
-button.disabled {
+button.disabled,
+button:disabled {
   pointer-events: none;
   opacity: 0.5;
 }
 
-@media (max-width: 400px) {
+.reiniciar {
+  color: #ffffff;
+  font-size: 0.875rem;
+  cursor: pointer;
+  margin: 48px auto 0 auto;
+  border-bottom: 1px solid #ffffff;
+}
+.reiniciar:hover {
+  color: #dfe6ff;
+}
+
+@media (max-width: 500px) {
   button {
     width: 60%;
   }

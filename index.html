@@ -11,9 +11,9 @@
 <body>
   <div id="tela-inicial" class="tela-inicial">
     <span class="titulo">Selecione a Dificuldade</span>
-    <button onclick="selecionarDificuldade('facil')">Fácil</button>
-    <button onclick="selecionarDificuldade('medio')">Médio</button>
-    <button onclick="selecionarDificuldade('dificil')">Difícil</button>
+    <button onclick="selecionarDificuldade('facil')" disabled>Fácil</button>
+    <button onclick="selecionarDificuldade('medio')" disabled>Médio</button>
+    <button onclick="selecionarDificuldade('dificil')" disabled>Difícil</button>
     <button onclick="selecionarDificuldade('todos')">Todos os países</button>
   </div>
 
@@ -23,6 +23,7 @@
     <button onclick="iniciarJogo('25')">25</button>
     <button onclick="iniciarJogo('50')">50</button>
     <button onclick="iniciarJogo('194')">Todos os países</button>
+    <a class="reiniciar" onclick="reiniciarJogo()">Reiniciar Jogo</a>
   </div>
 
   <main id="tela-jogo" class="tela-jogo hidden">
@@ -46,6 +47,8 @@
       <span class="acertos">0</span>
       <span class="erros">0</span>
     </div>
+
+    <a class="reiniciar" onclick="reiniciarJogo()">Reiniciar Jogo</a>
   </main>
   <script src="niveis.js"></script>
   <script src="script.js"></script>
