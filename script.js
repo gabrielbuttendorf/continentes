@@ -6,22 +6,26 @@ const continenteFormatado = {
   'oceania': 'Oceania'
 }
 
+let paisContinente = [['null', 'null']]
+
+// Variáveis globais
 const pais = document.getElementById('pais')
 const proximo = document.getElementById('proximo')
 const feedback = document.getElementById('feedback')
 const respostaCorreta = document.getElementById('resposta-correta')
 const elementoAcertos = document.getElementsByClassName('acertos')[0]
 const elementoErros = document.getElementsByClassName('erros')[0]
-let paisContinente = [['null', 'null']]
+let dificuldade = ''
+let qtdPais = 0
 let numerosSorteados = []
 let paisesIncorretos = []
 let numeroAcertos = 0
 let numeroErros = 0
 
 // Iniciar jogo e escolher nível de dificuldade
-function iniciarJogo(dificuldade) {
-  document.getElementById('tela-inicial').classList.add('hidden')
-  document.getElementById('tela-jogo').classList.remove('hidden')
+function iniciarJogo(quantidade) {
+  exibirTelaJogo()
+
   if (dificuldade === 'facil') {
     paisContinente = paisContinenteFacil
   } else if (dificuldade === 'medio') {
@@ -32,6 +36,7 @@ function iniciarJogo(dificuldade) {
     paisContinente = paisContinenteGeral
   }
 
+  qtdPais = Number(quantidade)
   let numeroSorteado = sortearNumero()
 
   // Inserir o nome do país sorteado no SPAN
@@ -76,26 +81,34 @@ proximo.addEventListener('click', () => {
 })
 }
 
+// Selecionar dificuldade e ir para a tela de escolher quantidade de países
+function selecionarDificuldade(dificuldadeEscolhida) {
+  dificuldade = dificuldadeEscolhida
+  exibirTelaSecundaria()
+}
+
 // Sortear número
 function sortearNumero() {
-  if (numerosSorteados.length === paisContinente.length) {
+  if (numerosSorteados.length === qtdPais) {
     if (paisesIncorretos.length > 0) {
       let confirmar = confirm('Todos os países foram exibidos, deseja jogar com os países que você errou?')
 
       if (confirmar) {
         paisContinente = paisesIncorretos
+        numerosSorteados = []
+        qtdPais = paisContinente.length
         numeroAcertos = 0
         numeroErros = 0
         atualizarErrosAcertos()
       } else {
-        window.location.reload()
+        reiniciarJogo()
+        return
       }
 
       paisesIncorretos = []
-      numerosSorteados = []
     } else {
       alert('Acertou todos os países! Parabéns!')
-      window.location.reload()
+      reiniciarJogo()
       return
     }
   }
@@ -104,13 +117,31 @@ function sortearNumero() {
 
   do {
     numero = Math.floor(Math.random() * paisContinente.length)
-  } while (numerosSorteados.includes(numero));
+  } while (numerosSorteados.includes(numero))
 
   numerosSorteados.push(numero)
   return numero
 }
 
+// Atualizar erros e acertos na tela
 function atualizarErrosAcertos() {
   elementoErros.textContent = numeroErros
   elementoAcertos.textContent = numeroAcertos
+}
+
+// Exibe a tela secundária e oculta a tela inicial
+function exibirTelaSecundaria() {
+  document.getElementById('tela-inicial').classList.add('hidden')
+  document.getElementById('tela-secundaria').classList.remove('hidden')
+}
+
+// Exibe a tela jogo e oculta a tela secundária
+function exibirTelaJogo() {
+  document.getElementById('tela-secundaria').classList.add('hidden')
+  document.getElementById('tela-jogo').classList.remove('hidden')
+}
+
+// Reinicia o jogo recarregando a página
+function reiniciarJogo() {
+  window.location.reload()
 }

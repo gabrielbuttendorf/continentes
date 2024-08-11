@@ -5,16 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Qual é o Continente?</title>
   <link rel="stylesheet" href="./styles/style.css">
-  <link rel="stylesheet" href="./styles/tela-inicial.css">
+  <link rel="stylesheet" href="./styles/tela-inicial-secundaria.css">
   <link rel="stylesheet" href="./styles/tela-jogo.css">
 </head>
 <body>
   <div id="tela-inicial" class="tela-inicial">
     <span class="titulo">Selecione a Dificuldade</span>
-    <button onclick="iniciarJogo('facil')">Fácil</button>
-    <button onclick="iniciarJogo('medio')">Médio</button>
-    <button onclick="iniciarJogo('dificil')">Difícil</button>
-    <button onclick="iniciarJogo('todos')">Todos os países</button>
+    <button onclick="selecionarDificuldade('facil')">Fácil</button>
+    <button onclick="selecionarDificuldade('medio')">Médio</button>
+    <button onclick="selecionarDificuldade('dificil')">Difícil</button>
+    <button onclick="selecionarDificuldade('todos')">Todos os países</button>
+  </div>
+
+  <div id="tela-secundaria" class="tela-secundaria hidden">
+    <span class="titulo">Selecione a Quantidade de Países</span>
+    <button onclick="iniciarJogo('10')">10</button>
+    <button onclick="iniciarJogo('25')">25</button>
+    <button onclick="iniciarJogo('50')">50</button>
+    <button onclick="iniciarJogo('194')">Todos os países</button>
   </div>
 
   <main id="tela-jogo" class="tela-jogo hidden">
