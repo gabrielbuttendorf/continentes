@@ -10,6 +10,8 @@ const pais = document.getElementById('pais')
 const proximo = document.getElementById('proximo')
 const feedback = document.getElementById('feedback')
 const respostaCorreta = document.getElementById('resposta-correta')
+const elementoAcertos = document.getElementsByClassName('acertos')[0]
+const elementoErros = document.getElementsByClassName('erros')[0]
 let paisContinente = [['null', 'null']]
 let numerosSorteados = []
 let paisesIncorretos = []
@@ -58,6 +60,7 @@ buttons.forEach((button) => {
       numeroErros++
     }
 
+    atualizarErrosAcertos()
     proximo.classList.remove('disabled')
   })
 })
@@ -78,10 +81,12 @@ function sortearNumero() {
   if (numerosSorteados.length === paisContinente.length) {
     if (paisesIncorretos.length > 0) {
       let confirmar = confirm('Todos os países foram exibidos, deseja jogar com os países que você errou?')
-      alert('Acertos: ' + numeroAcertos + '\nErros: ' + numeroErros)
 
       if (confirmar) {
         paisContinente = paisesIncorretos
+        numeroAcertos = 0
+        numeroErros = 0
+        atualizarErrosAcertos()
       } else {
         window.location.reload()
       }
@@ -103,4 +108,9 @@ function sortearNumero() {
 
   numerosSorteados.push(numero)
   return numero
+}
+
+function atualizarErrosAcertos() {
+  elementoErros.textContent = numeroErros
+  elementoAcertos.textContent = numeroAcertos
 }
