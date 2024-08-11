@@ -13,6 +13,8 @@ const respostaCorreta = document.getElementById('resposta-correta')
 let paisContinente = [['null', 'null']]
 let numerosSorteados = []
 let paisesIncorretos = []
+let numeroAcertos = 0
+let numeroErros = 0
 
 // Iniciar jogo e escolher nível de dificuldade
 function iniciarJogo(dificuldade) {
@@ -24,6 +26,8 @@ function iniciarJogo(dificuldade) {
     paisContinente = paisContinenteMedio
   } else if (dificuldade === 'dificil') {
     paisContinente = paisContinenteDificil
+  } else {
+    paisContinente = paisContinenteGeral
   }
 
   let numeroSorteado = sortearNumero()
@@ -45,11 +49,13 @@ buttons.forEach((button) => {
       feedback.style.color = '#3ed953'
       feedback.textContent = 'CORRETO!'
       respostaCorreta.textContent = ''
+      numeroAcertos ++
     } else {
       feedback.style.color = '#d93e3e'
       feedback.textContent = 'ERROU!'
       respostaCorreta.textContent = `Correto seria: ${continenteFormatado[paisContinente[numeroSorteado][1]]}`
       paisesIncorretos.push(paisContinente[numeroSorteado])
+      numeroErros++
     }
 
     proximo.classList.remove('disabled')
@@ -72,6 +78,7 @@ function sortearNumero() {
   if (numerosSorteados.length === paisContinente.length) {
     if (paisesIncorretos.length > 0) {
       let confirmar = confirm('Todos os países foram exibidos, deseja jogar com os países que você errou?')
+      alert('Acertos: ' + numeroAcertos + '\nErros: ' + numeroErros)
 
       if (confirmar) {
         paisContinente = paisesIncorretos
