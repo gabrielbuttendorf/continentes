@@ -36,7 +36,15 @@ function iniciarJogo(quantidade) {
     paisContinente = paisContinenteGeral
   }
 
-  qtdPais = Number(quantidade)
+  if (quantidade === 'todos') {
+    qtdPais = paisContinente.length
+  } else {
+    qtdPais = Number(quantidade)
+    if (qtdPais > paisContinente.length) {
+      qtdPais = paisContinente.length
+    }
+  }
+
   let numeroSorteado = sortearNumero()
 
   // Inserir o nome do país sorteado no SPAN
