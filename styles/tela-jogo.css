@@ -6,8 +6,9 @@
 }
 
 .feedback-container {
-  padding: 40px 0;
-  height: 120px;
+  height: 100px;
+  display: grid;
+  align-content: center;
 }
 
 .feedback-container span {
